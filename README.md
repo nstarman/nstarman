@@ -14,7 +14,7 @@
 <h3 align="left">Connect with me:</h3>
 <p align="left">
 <!-- <a href="https://linkedin.com/in/nathanielstarkman@gmail.com" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="nathanielstarkman@gmail.com" height="30" width="40" /></a>  -->
-<a href="https://stackoverflow.com/users/nstarman" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/stackoverflow.svg" alt="nstarman" height="30" width="40" /></a>
+<!-- <a href="https://stackoverflow.com/users/nstarman" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/stackoverflow.svg" alt="nstarman" height="30" width="40" /></a>  -->
 <a href="https://calendly.com/nathanielstarkman" target="blank"><img align="center" src="http://cdn.onlinewebfonts.com/svg/img_134220.svg" alt="calendly" height="30" width="40" /></a>
 <a href="mailto:n.starkman@mail.utoronto.ca" target="blank"><img align="center" src="https://image.flaticon.com/icons/svg/80/80599.svg" alt="email" height="30" width="40" /></a>
 </p>
