@@ -9,7 +9,7 @@
 
 - 💻📄 All of my research & experience are available at [http://www.astro.utoronto.ca/~starkman/](http://www.astro.utoronto.ca/~starkman.html)
 
-- 💬 Ask me about **dark matter or cheese**
+- 💬 Ask me about **dark matter** or cheese
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
