@@ -1,13 +1,14 @@
-import os, time, requests
-from datetime import datetime, timezone
+import os
+import time
+import requests
 
 GH_API = "https://api.github.com"
 NOTION_API = "https://api.notion.com/v1"
 NOTION_VERSION = "2022-06-28"
 
-GH_TOKEN = os.environ["NOTION_SEARCH_GH_TOKEN"]
-NOTION_API_KEY = os.environ["NOTION_GH_ACTIVITY_API_KEY"]
-NOTION_DB_ID = os.environ["NOTION_GH_ACTIVITY_DATABASE_ID"]
+GH_TOKEN = os.environ["GH_TOKEN"]
+NOTION_API_KEY = os.environ["NOTION_API_KEY"]
+NOTION_DB_ID = os.environ["NOTION_DATABASE_ID"]
 GH_USERNAME = os.environ["GH_USERNAME"]
 
 headers_gh = {
