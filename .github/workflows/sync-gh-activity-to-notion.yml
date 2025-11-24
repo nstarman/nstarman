@@ -33,9 +33,9 @@ jobs:
 
       - name: Run sync
         env:
-          GH_TOKEN: $ secrets.NOTION_SEARCH_GH_TOKEN
-          NOTION_API_KEY: $ secrets.NOTION_GH_ACTIVITY_API_KEY
-          NOTION_DATABASE_ID: $ secrets.NOTION_GH_ACTIVITY_DATABASE_ID
+          GH_TOKEN: ${{ secrets.NOTION_SEARCH_GH_TOKEN }}
+          NOTION_API_KEY: ${{ secrets.NOTION_GH_ACTIVITY_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_GH_ACTIVITY_DATABASE_ID }}
           GH_USERNAME: nstarman
         run: |
           python scripts/sync_my_activity_to_notion.py
