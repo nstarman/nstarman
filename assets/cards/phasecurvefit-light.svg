@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="150" viewBox="0 0 400 150" role="img" aria-label="phasecurvefit">
+<title>phasecurvefit</title>
+<rect x="0.5" y="0.5" width="399" height="149" rx="12" fill="#ffffff" stroke="#d0d7de"/>
+<text x="18" y="38" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" font-weight="600" fill="#0969da">〰️  phasecurvefit</text>
+<text x="18" y="66" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#57606a">Paths through phase space. Fit a curve through phase-space</text>
+<text x="18" y="86" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#57606a">points — streams, orbits, trajectories. Under JOSS &amp;</text>
+<text x="18" y="106" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#57606a">pyOpenSci review.</text>
+</svg>

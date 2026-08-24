@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="150" viewBox="0 0 400 150" role="img" aria-label="galax">
+<title>galax</title>
+<rect x="0.5" y="0.5" width="399" height="149" rx="12" fill="#0d1117" stroke="#30363d"/>
+<text x="18" y="38" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" font-weight="600" fill="#2f81f7">🌌  galax</text>
+<text x="18" y="66" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">Galactic dynamics in JAX. Orbit integration, potentials and</text>
+<text x="18" y="86" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">stream generation — GPU-accelerated and fully</text>
+<text x="18" y="106" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">differentiable.</text>
+<rect x="18" y="110" width="46" height="22" rx="11" fill="#161b22" stroke="#30363d"/>
+<text x="29" y="125" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11" fill="#8b949e">★ 49</text>
+</svg>

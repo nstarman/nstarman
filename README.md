@@ -28,112 +28,38 @@ Ask me about dark matter, differentiable simulation, or cheese.
 ### 💻 Software
 
 <!--
-  MAINTENANCE NOTE — star badges
-  Only repos with >= 50 stars carry a shields.io star badge; below that the number
-  undersells the library more than it helps. Re-check every ~6 months and promote
-  any repo that crosses the threshold:
+  MAINTENANCE NOTE — software cards
+  GitHub's markdown sanitizer strips `style`, `class` and `<style>`, so a CSS
+  card grid is impossible here. The cards below are therefore images: one SVG
+  per library per colour scheme, picked at view time by <picture>. They flow in
+  a plain <p>, so they re-wrap from two columns to one on a narrow viewport.
 
-      gh repo list GalacticDynamics --json name,stargazerCount \
-        --jq '.[] | select(.stargazerCount >= 50) | "\(.stargazerCount) \(.name)"'
-      gh api repos/nstarman/quax --jq .stargazers_count
+  Regenerate after editing a blurb, adding a library, or to refresh the star
+  counts baked into the pills (they are fetched live at generation time):
 
-  EXCEPTION: galax is badged regardless of count — it is the flagship science
-  library, and the threshold is a presentation rule, not a judgement about it.
+      python3 scripts/make_software_cards.py
 
-  Last checked: 2026-08-24. Badged: astropy (5284), quax (143), unxt (67),
+  Star pills only appear on repos with >= 50 stars — below that the number
+  undersells the library. EXCEPTION: galax is pilled regardless; it is the
+  flagship science library and the threshold is a presentation rule, not a
+  judgement about it.
+
+  Last generated: 2026-08-24. Pilled: astropy (5.3k), quax (143), unxt (67),
   galax (49, exempt). Closest below the line: coordinax (37).
 -->
 
-<table>
-<tr>
-<td width="50%" valign="top">
-
-#### 🔭 [Astropy](https://github.com/astropy/astropy)
-
-**Astronomy in Python.** The community core package. I'm a core developer, Coordination Committee member, and on the Strategic Planning committee.
-
-[![stars](https://img.shields.io/github/stars/astropy/astropy?style=social)](https://github.com/astropy/astropy)
-
-</td>
-<td width="50%" valign="top">
-
-#### 🌌 [galax](https://github.com/GalacticDynamics/galax)
-
-**Galactic dynamics in JAX.** Orbit integration, potentials, and stream generation — GPU-accelerated and fully differentiable.
-
-[![stars](https://img.shields.io/github/stars/GalacticDynamics/galax?style=social)](https://github.com/GalacticDynamics/galax)
-
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-
-#### 📏 [unxt](https://github.com/GalacticDynamics/unxt)
-
-**Units in JAX.** Unit-aware quantities that survive `jit`, `grad`, and `vmap`. Published in JOSS.
-
-[![stars](https://img.shields.io/github/stars/GalacticDynamics/unxt?style=social)](https://github.com/GalacticDynamics/unxt)
-
-</td>
-<td width="50%" valign="top">
-
-#### 🧭 [coordinax](https://github.com/GalacticDynamics/coordinax)
-
-**Coordinates in JAX.** Vectors, frames, and transformations — differentiable, and unit-aware via `unxt`.
-
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-
-#### 🔀 [quax](https://github.com/nstarman/quax)
-
-**Multiple dispatch in JAX.** Custom array-ish types that work with JAX primitives. The substrate the rest of the stack is built on.
-
-[![stars](https://img.shields.io/github/stars/nstarman/quax?style=social)](https://github.com/nstarman/quax)
-
-</td>
-<td width="50%" valign="top">
-
-#### ⚡ [quaxed](https://github.com/GalacticDynamics/quaxed)
-
-**Pre-`quax`ed libraries.** Drop-in `jax.numpy` and friends, already wrapped for dispatch over abstract array types.
-
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-
-#### 📊 [mvgkde](https://github.com/nstarman/mvgkde)
-
-**Multivariate Gaussian KDE.** Kernel density estimation in JAX — differentiable, vectorized, and bandwidth-tunable.
-
-</td>
-<td width="50%" valign="top">
-
-#### 🧩 [dataclassish](https://github.com/GalacticDynamics/dataclassish)
-
-**`dataclasses`, for everything.** `replace`, `fields`, `asdict` — generalized to any object, not just dataclasses.
-
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-
-#### ➕ [jaxmore](https://github.com/GalacticDynamics/jaxmore)
-
-**There's more to JAX.** The utilities you keep re-writing, collected in one place.
-
-</td>
-<td width="50%" valign="top">
-
-#### 〰️ [phasecurvefit](https://github.com/GalacticDynamics/phasecurvefit)
-
-**Paths through phase space.** Fit a curve through phase-space points — streams, orbits, trajectories. Under JOSS & pyOpenSci review.
-
-</td>
-</tr>
-</table>
+<p>
+<a href="https://github.com/astropy/astropy"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/astropy-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/astropy-light.svg" alt="astropy" width="400"></picture></a>
+<a href="https://github.com/GalacticDynamics/galax"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/galax-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/galax-light.svg" alt="galax" width="400"></picture></a>
+<a href="https://github.com/GalacticDynamics/unxt"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/unxt-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/unxt-light.svg" alt="unxt" width="400"></picture></a>
+<a href="https://github.com/GalacticDynamics/coordinax"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/coordinax-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/coordinax-light.svg" alt="coordinax" width="400"></picture></a>
+<a href="https://github.com/nstarman/quax"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/quax-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/quax-light.svg" alt="quax" width="400"></picture></a>
+<a href="https://github.com/GalacticDynamics/quaxed"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/quaxed-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/quaxed-light.svg" alt="quaxed" width="400"></picture></a>
+<a href="https://github.com/nstarman/mvgkde"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/mvgkde-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/mvgkde-light.svg" alt="mvgkde" width="400"></picture></a>
+<a href="https://github.com/GalacticDynamics/dataclassish"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/dataclassish-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/dataclassish-light.svg" alt="dataclassish" width="400"></picture></a>
+<a href="https://github.com/GalacticDynamics/jaxmore"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/jaxmore-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/jaxmore-light.svg" alt="jaxmore" width="400"></picture></a>
+<a href="https://github.com/GalacticDynamics/phasecurvefit"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/phasecurvefit-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/phasecurvefit-light.svg" alt="phasecurvefit" width="400"></picture></a>
+</p>
 
 <details>
 <summary><i>Click to expand:</i> the rest of the ecosystem — JAX tooling, Python micro-libraries, and science codes.</summary>

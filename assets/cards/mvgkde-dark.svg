@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="150" viewBox="0 0 400 150" role="img" aria-label="mvgkde">
+<title>mvgkde</title>
+<rect x="0.5" y="0.5" width="399" height="149" rx="12" fill="#0d1117" stroke="#30363d"/>
+<text x="18" y="38" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" font-weight="600" fill="#2f81f7">📊  mvgkde</text>
+<text x="18" y="66" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">Multivariate Gaussian KDE. Kernel density estimation in JAX</text>
+<text x="18" y="86" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">— differentiable, vectorized, bandwidth-tunable.</text>
+</svg>
