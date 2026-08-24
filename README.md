@@ -8,7 +8,7 @@ Ask me about dark matter, differentiable simulation, or cheese.
 
 ✉️ starkman [at] mit [dot] edu &nbsp;|&nbsp; 🌐 [nstarman.github.io](https://nstarman.github.io/)
 
-<img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/ads.svg" alt="ADS" width="18" height="16"> [**Publications**](https://ui.adsabs.harvard.edu/search/p_=0&q=author%3A%22Starkman%2C%20Nathaniel%22&sort=date%20desc%2C%20bibcode%20desc) &nbsp;|&nbsp; <img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/arxiv.svg" alt="arXiv" width="16" height="16"> [**arXiv**](https://arxiv.org/search/advanced?advanced=&terms-0-operator=AND&terms-0-term=Starkman%2C+Nathaniel&terms-0-field=author&classification-physics_archives=all&classification-include_cross_list=include&date-filter_by=all_dates&abstracts=show&size=50&order=-announced_date_first) &nbsp;|&nbsp; <img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/zenodo.svg" alt="Zenodo" width="16" height="16"> [**Zenodo**](https://zenodo.org/search?q=%22Starkman%2C%20Nathaniel%22%20OR%20%22Nathaniel%20Starkman%22) &nbsp;|&nbsp; <img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/orcid.svg" alt="ORCID" width="16" height="16"> [**ORCID** 0000-0003-3954-3291](https://orcid.org/0000-0003-3954-3291)
+<img src="assets/ads.svg" alt="ADS" width="18" height="16"> [**Publications**](https://ui.adsabs.harvard.edu/search/p_=0&q=author%3A%22Starkman%2C%20Nathaniel%22&sort=date%20desc%2C%20bibcode%20desc) &nbsp;|&nbsp; <img src="assets/arxiv.svg" alt="arXiv" width="16" height="16"> [**arXiv**](https://arxiv.org/search/advanced?advanced=&terms-0-operator=AND&terms-0-term=Starkman%2C+Nathaniel&terms-0-field=author&classification-physics_archives=all&classification-include_cross_list=include&date-filter_by=all_dates&abstracts=show&size=50&order=-announced_date_first) &nbsp;|&nbsp; <img src="assets/zenodo.svg" alt="Zenodo" width="16" height="16"> [**Zenodo**](https://zenodo.org/search?q=%22Starkman%2C%20Nathaniel%22%20OR%20%22Nathaniel%20Starkman%22) &nbsp;|&nbsp; <img src="assets/orcid.svg" alt="ORCID" width="16" height="16"> [**ORCID** 0000-0003-3954-3291](https://orcid.org/0000-0003-3954-3291)
 
 ### 📄 Select Publications
 
@@ -34,31 +34,32 @@ Ask me about dark matter, differentiable simulation, or cheese.
   per library per colour scheme, picked at view time by <picture>. They flow in
   a plain <p>, so they re-wrap from two columns to one on a narrow viewport.
 
-  Regenerate after editing a blurb, adding a library, or to refresh the star
-  counts baked into the pills (they are fetched live at generation time):
+  Regenerated monthly by .github/workflows/refresh-software-cards.yml, which
+  re-fetches every star count and opens a commit only if a card changed. Run
+  it by hand after editing a blurb or adding a library:
 
       python3 scripts/make_software_cards.py
 
-  Star pills only appear on repos with >= 50 stars — below that the number
-  undersells the library. EXCEPTION: galax is pilled regardless; it is the
-  flagship science library and the threshold is a presentation rule, not a
-  judgement about it.
+  The star pill is driven by the live count, not a flag in the README — a repo
+  crossing the threshold (50) gains its pill on the next run with no edit here.
+  Thresholds and the galax exemption live in scripts/make_software_cards.py.
 
-  Last generated: 2026-08-24. Pilled: astropy (5.3k), quax (143), unxt (67),
-  galax (49, exempt). Closest below the line: coordinax (37).
+  Paths are relative on purpose: GitHub rewrites them to the repo's raw URL on
+  the profile page, the repo page and any branch, so they survive a rename and
+  render in PR previews.
 -->
 
 <p>
-<a href="https://github.com/astropy/astropy"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/astropy-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/astropy-light.svg" alt="astropy" width="400"></picture></a>
-<a href="https://github.com/GalacticDynamics/galax"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/galax-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/galax-light.svg" alt="galax" width="400"></picture></a>
-<a href="https://github.com/GalacticDynamics/unxt"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/unxt-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/unxt-light.svg" alt="unxt" width="400"></picture></a>
-<a href="https://github.com/GalacticDynamics/coordinax"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/coordinax-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/coordinax-light.svg" alt="coordinax" width="400"></picture></a>
-<a href="https://github.com/nstarman/quax"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/quax-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/quax-light.svg" alt="quax" width="400"></picture></a>
-<a href="https://github.com/GalacticDynamics/quaxed"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/quaxed-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/quaxed-light.svg" alt="quaxed" width="400"></picture></a>
-<a href="https://github.com/nstarman/mvgkde"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/mvgkde-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/mvgkde-light.svg" alt="mvgkde" width="400"></picture></a>
-<a href="https://github.com/GalacticDynamics/dataclassish"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/dataclassish-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/dataclassish-light.svg" alt="dataclassish" width="400"></picture></a>
-<a href="https://github.com/GalacticDynamics/jaxmore"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/jaxmore-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/jaxmore-light.svg" alt="jaxmore" width="400"></picture></a>
-<a href="https://github.com/GalacticDynamics/phasecurvefit"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/phasecurvefit-dark.svg"><img src="https://raw.githubusercontent.com/nstarman/nstarman/main/assets/cards/phasecurvefit-light.svg" alt="phasecurvefit" width="400"></picture></a>
+<a href="https://github.com/astropy/astropy"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/astropy-dark.svg"><img src="assets/cards/astropy-light.svg" alt="astropy" width="400"></picture></a>
+<a href="https://github.com/GalacticDynamics/galax"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/galax-dark.svg"><img src="assets/cards/galax-light.svg" alt="galax" width="400"></picture></a>
+<a href="https://github.com/GalacticDynamics/unxt"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/unxt-dark.svg"><img src="assets/cards/unxt-light.svg" alt="unxt" width="400"></picture></a>
+<a href="https://github.com/GalacticDynamics/coordinax"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/coordinax-dark.svg"><img src="assets/cards/coordinax-light.svg" alt="coordinax" width="400"></picture></a>
+<a href="https://github.com/nstarman/quax"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/quax-dark.svg"><img src="assets/cards/quax-light.svg" alt="quax" width="400"></picture></a>
+<a href="https://github.com/GalacticDynamics/quaxed"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/quaxed-dark.svg"><img src="assets/cards/quaxed-light.svg" alt="quaxed" width="400"></picture></a>
+<a href="https://github.com/nstarman/mvgkde"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/mvgkde-dark.svg"><img src="assets/cards/mvgkde-light.svg" alt="mvgkde" width="400"></picture></a>
+<a href="https://github.com/GalacticDynamics/dataclassish"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/dataclassish-dark.svg"><img src="assets/cards/dataclassish-light.svg" alt="dataclassish" width="400"></picture></a>
+<a href="https://github.com/GalacticDynamics/jaxmore"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/jaxmore-dark.svg"><img src="assets/cards/jaxmore-light.svg" alt="jaxmore" width="400"></picture></a>
+<a href="https://github.com/GalacticDynamics/phasecurvefit"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/phasecurvefit-dark.svg"><img src="assets/cards/phasecurvefit-light.svg" alt="phasecurvefit" width="400"></picture></a>
 </p>
 
 <details>

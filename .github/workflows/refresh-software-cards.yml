@@ -1,0 +1,47 @@
+name: Refresh software cards
+
+# The star pill on each software card is baked into a committed SVG, so it
+# goes stale on its own. Regenerate monthly: the script re-fetches every star
+# count and re-applies the threshold, so a repo crossing 50 stars gains its
+# pill without anyone editing the README.
+
+on:
+  schedule:
+    - cron: "0 6 1 * *"  # 06:00 UTC on the 1st of each month
+  workflow_dispatch:      # and on demand, to check a change immediately
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-software-cards
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Regenerate cards
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/make_software_cards.py
+
+      - name: Commit if anything changed
+        run: |
+          if git diff --quiet -- assets/cards; then
+            echo "Star counts unchanged — nothing to commit."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/cards
+          git commit -m "Refresh software card star counts
+
+          Automated by .github/workflows/refresh-software-cards.yml."
+          git push

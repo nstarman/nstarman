@@ -1,17 +1,26 @@
 #!/usr/bin/env python3
-"""Render the Software-section cards as self-hosted SVGs.
+"""Render the Software-section cards of README.md as self-hosted SVGs.
 
 GitHub's markdown sanitizer strips `style`, `class` and `<style>`, so a CSS
-card grid is impossible in a README. The cards are therefore images, one SVG
+card grid is impossible in a README. The cards are therefore images: one SVG
 per library per colour scheme, selected at view time with <picture>.
 
-Re-run after editing CARDS:  python3 scripts/make_software_cards.py
+Star pills are driven by the live star count, not a hardcoded flag — a repo
+crossing THRESHOLD gains its pill on the next run with no edit here. Run
+monthly by .github/workflows/refresh-software-cards.yml, or by hand:
+
+    python3 scripts/make_software_cards.py
 """
 
-import json
 import subprocess
 from html import escape
 from pathlib import Path
+
+# A pill below this reads as a liability rather than a credential.
+THRESHOLD = 50
+# galax is the flagship science library; the threshold is a presentation rule,
+# not a judgement about it, so it keeps its pill at any count.
+ALWAYS_PILL = {"galax"}
 
 W, H, PAD = 400, 150, 18
 THEMES = {
@@ -21,68 +30,59 @@ THEMES = {
 }
 FONT = "system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
 
-# (slug, emoji, title, description, star badge?) -- see REPOS for the
-# GitHub path each slug maps to.
-REPOS = {
-    "astropy": "astropy/astropy",
-    "galax": "GalacticDynamics/galax",
-    "unxt": "GalacticDynamics/unxt",
-    "coordinax": "GalacticDynamics/coordinax",
-    "quax": "nstarman/quax",
-    "quaxed": "GalacticDynamics/quaxed",
-    "mvgkde": "nstarman/mvgkde",
-    "dataclassish": "GalacticDynamics/dataclassish",
-    "jaxmore": "GalacticDynamics/jaxmore",
-    "phasecurvefit": "GalacticDynamics/phasecurvefit",
+# slug -> (repo, emoji, title, description)
+CARDS = {
+    "astropy": ("astropy/astropy", "🔭", "Astropy",
+        "The community core package for astronomy in Python. I'm a core "
+        "developer, on the Coordination Committee, and on Strategic Planning."),
+    "galax": ("GalacticDynamics/galax", "🌌", "galax",
+        "Galactic dynamics in JAX. Orbit integration, potentials and stream "
+        "generation — GPU-accelerated and fully differentiable."),
+    "unxt": ("GalacticDynamics/unxt", "📏", "unxt",
+        "Units in JAX. Unit-aware quantities that survive jit, grad and vmap. "
+        "Published in JOSS."),
+    "coordinax": ("GalacticDynamics/coordinax", "🧭", "coordinax",
+        "Coordinates in JAX. Vectors, frames and transformations — "
+        "differentiable, and unit-aware via unxt."),
+    "quax": ("nstarman/quax", "🔀", "quax",
+        "Multiple dispatch in JAX. Custom array-ish types that work with JAX "
+        "primitives — the substrate the rest of the stack builds on."),
+    "quaxed": ("GalacticDynamics/quaxed", "⚡", "quaxed",
+        "Pre-quaxed libraries. Drop-in jax.numpy and friends, already wrapped "
+        "for dispatch over abstract array types."),
+    "mvgkde": ("nstarman/mvgkde", "📊", "mvgkde",
+        "Multivariate Gaussian KDE. Kernel density estimation in JAX — "
+        "differentiable, vectorized, bandwidth-tunable."),
+    "dataclassish": ("GalacticDynamics/dataclassish", "🧩", "dataclassish",
+        "dataclasses, for everything. replace, fields and asdict, generalized "
+        "to any object rather than just dataclasses."),
+    "jaxmore": ("GalacticDynamics/jaxmore", "➕", "jaxmore",
+        "There's more to JAX. The utilities you keep re-writing, collected in "
+        "one place."),
+    "phasecurvefit": ("GalacticDynamics/phasecurvefit", "〰️", "phasecurvefit",
+        "Paths through phase space. Fit a curve through phase-space points — "
+        "streams, orbits, trajectories. Under JOSS & pyOpenSci review."),
 }
-CARDS = [
-    ("astropy", "🔭", "Astropy",
-     "The community core package for astronomy in Python. "
-     "I'm a core developer, on the Coordination Committee, and on "
-     "Strategic Planning.", True),
-    ("galax", "🌌", "galax",
-     "Galactic dynamics in JAX. Orbit integration, potentials and stream "
-     "generation — GPU-accelerated and fully differentiable.", True),
-    ("unxt", "📏", "unxt",
-     "Units in JAX. Unit-aware quantities that survive jit, grad and vmap. "
-     "Published in JOSS.", True),
-    ("coordinax", "🧭", "coordinax",
-     "Coordinates in JAX. Vectors, frames and transformations — "
-     "differentiable, and unit-aware via unxt.", False),
-    ("quax", "🔀", "quax",
-     "Multiple dispatch in JAX. Custom array-ish types that work with JAX "
-     "primitives — the substrate the rest of the stack builds on.", True),
-    ("quaxed", "⚡", "quaxed",
-     "Pre-quaxed libraries. Drop-in jax.numpy and friends, already wrapped "
-     "for dispatch over abstract array types.", False),
-    ("mvgkde", "📊", "mvgkde",
-     "Multivariate Gaussian KDE. Kernel density estimation in JAX — "
-     "differentiable, vectorized, bandwidth-tunable.", False),
-    ("dataclassish", "🧩", "dataclassish",
-     "dataclasses, for everything. replace, fields and asdict, generalized "
-     "to any object rather than just dataclasses.", False),
-    ("jaxmore", "➕", "jaxmore",
-     "There's more to JAX. The utilities you keep re-writing, collected in "
-     "one place.", False),
-    ("phasecurvefit", "〰️", "phasecurvefit",
-     "Paths through phase space. Fit a curve through phase-space points — "
-     "streams, orbits, trajectories. Under JOSS & pyOpenSci review.", False),
-]
 
 
-def stars(slug):
-    """Live star count via gh, so a regenerate is never stale."""
+def star_count(repo):
+    """Live count via gh. None on failure, which suppresses the pill rather
+    than baking in a wrong number."""
     try:
-        n = int(subprocess.run(
-            ["gh", "api", f"repos/{REPOS[slug]}", "--jq", ".stargazers_count"],
-            capture_output=True, text=True, check=True, timeout=20).stdout)
-    except Exception:
-        return "\u2605"
-    return f"\u2605 {n/1000:.1f}k" if n >= 1000 else f"\u2605 {n}"
+        return int(subprocess.run(
+            ["gh", "api", f"repos/{repo}", "--jq", ".stargazers_count"],
+            capture_output=True, text=True, check=True, timeout=30).stdout)
+    except Exception as exc:  # network, auth, rate limit, renamed repo
+        print(f"  ! {repo}: {exc.__class__.__name__} — pill suppressed")
+        return None
+
+
+def pill_label(n):
+    return f"★ {n/1000:.1f}k" if n >= 1000 else f"★ {n}"
 
 
 def wrap(text, width_px, px_per_char=6.15, max_lines=3):
-    """Greedy wrap using an average glyph width; good enough for 13px sans."""
+    """Greedy wrap on an average glyph width; good enough for 13px sans."""
     limit = int(width_px / px_per_char)
     lines, cur = [], ""
     for word in text.split():
@@ -96,15 +96,12 @@ def wrap(text, width_px, px_per_char=6.15, max_lines=3):
                 break
     if cur and len(lines) < max_lines:
         lines.append(cur)
-    if len(lines) == max_lines and cur not in lines[-1]:
-        lines[-1] = lines[-1].rstrip(",.;") + "…"
     return lines
 
 
-def render(card, theme):
-    slug, emoji, title, desc, starred = card
+def render(slug, theme, label):
+    _repo, emoji, title, desc = CARDS[slug]
     bg, border, title_c, body_c, pill_bg, pill_c = THEMES[theme]
-    inner = W - 2 * PAD
 
     out = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" '
@@ -115,20 +112,16 @@ def render(card, theme):
         f'<text x="{PAD}" y="38" font-family="{FONT}" font-size="17" '
         f'font-weight="600" fill="{title_c}">{emoji}  {escape(title)}</text>',
     ]
-    for i, line in enumerate(wrap(desc, inner)):
+    for i, line in enumerate(wrap(desc, W - 2 * PAD)):
         out.append(
             f'<text x="{PAD}" y="{66 + i*20}" font-family="{FONT}" '
-            f'font-size="13" fill="{body_c}">{escape(line)}</text>'
-        )
-    if starred:
-        label = stars(slug)
-        width = 22 + 6 * len(label)
+            f'font-size="13" fill="{body_c}">{escape(line)}</text>')
+    if label:
         out += [
-            f'<rect x="{PAD}" y="{H-40}" width="{width}" height="22" rx="11" '
-            f'fill="{pill_bg}" stroke="{border}"/>',
+            f'<rect x="{PAD}" y="{H-40}" width="{22 + 6*len(label)}" '
+            f'height="22" rx="11" fill="{pill_bg}" stroke="{border}"/>',
             f'<text x="{PAD+11}" y="{H-25}" font-family="{FONT}" '
-            f'font-size="11" fill="{pill_c}">{label}</text>',
-        ]
+            f'font-size="11" fill="{pill_c}">{label}</text>']
     out.append("</svg>")
     return "\n".join(out)
 
@@ -136,12 +129,21 @@ def render(card, theme):
 def main():
     outdir = Path(__file__).resolve().parent.parent / "assets" / "cards"
     outdir.mkdir(parents=True, exist_ok=True)
-    for card in CARDS:
+
+    pilled, plain = [], []
+    for slug, (repo, *_) in CARDS.items():
+        n = star_count(repo)
+        show = n is not None and (n >= THRESHOLD or slug in ALWAYS_PILL)
+        label = pill_label(n) if show else ""
         for theme in THEMES:
-            (outdir / f"{card[0]}-{theme}.svg").write_text(
-                render(card, theme), encoding="utf-8"
-            )
-    print(f"wrote {len(CARDS) * len(THEMES)} cards to {outdir}")
+            (outdir / f"{slug}-{theme}.svg").write_text(
+                render(slug, theme, label), encoding="utf-8")
+        (pilled if show else plain).append(
+            f"{slug} ({n if n is not None else '?'})")
+
+    print(f"\nwrote {len(CARDS) * len(THEMES)} cards to {outdir}")
+    print(f"pilled  (>= {THRESHOLD}, or exempt): {', '.join(pilled) or 'none'}")
+    print(f"plain   (below threshold):          {', '.join(plain) or 'none'}")
 
 
 if __name__ == "__main__":
