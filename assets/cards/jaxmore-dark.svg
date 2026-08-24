@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="150" viewBox="0 0 400 150" role="img" aria-label="jaxmore">
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="162" viewBox="0 0 400 162" role="img" aria-label="jaxmore">
 <title>jaxmore</title>
-<rect x="0.5" y="0.5" width="399" height="149" rx="12" fill="#0d1117" stroke="#30363d"/>
+<rect x="0.5" y="0.5" width="399" height="161" rx="12" fill="#0d1117" stroke="#30363d"/>
 <text x="18" y="38" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" font-weight="600" fill="#2f81f7">➕  jaxmore</text>
 <text x="18" y="66" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">There&#x27;s more to JAX. The utilities you keep re-writing,</text>
 <text x="18" y="86" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">collected in one place.</text>

@@ -22,7 +22,14 @@ THRESHOLD = 50
 # not a judgement about it, so it keeps its pill at any count.
 ALWAYS_PILL = {"galax"}
 
-W, H, PAD = 400, 150, 18
+W, PAD = 400, 18
+TITLE_Y = 38                      # title baseline
+DESC_Y, DESC_LEADING = 66, 20     # first description baseline, then line step
+DESC_LINES = 3                    # reserved regardless of actual length, so
+                                  # every card is the same height in the grid
+PILL_H, PILL_GAP = 22, 16         # pill box, and its clearance below the text
+PILL_Y = DESC_Y + (DESC_LINES - 1) * DESC_LEADING + PILL_GAP
+H = PILL_Y + PILL_H + PAD
 THEMES = {
     # name:   (background, border,   title,     body,      pill bg,  pill text)
     "light": ("#ffffff", "#d0d7de", "#0969da", "#57606a", "#f6f8fa", "#57606a"),
@@ -109,18 +116,18 @@ def render(slug, theme, label):
         f'<title>{escape(title)}</title>',
         f'<rect x="0.5" y="0.5" width="{W-1}" height="{H-1}" rx="12" '
         f'fill="{bg}" stroke="{border}"/>',
-        f'<text x="{PAD}" y="38" font-family="{FONT}" font-size="17" '
+        f'<text x="{PAD}" y="{TITLE_Y}" font-family="{FONT}" font-size="17" '
         f'font-weight="600" fill="{title_c}">{emoji}  {escape(title)}</text>',
     ]
-    for i, line in enumerate(wrap(desc, W - 2 * PAD)):
+    for i, line in enumerate(wrap(desc, W - 2 * PAD, max_lines=DESC_LINES)):
         out.append(
-            f'<text x="{PAD}" y="{66 + i*20}" font-family="{FONT}" '
+            f'<text x="{PAD}" y="{DESC_Y + i*DESC_LEADING}" font-family="{FONT}" '
             f'font-size="13" fill="{body_c}">{escape(line)}</text>')
     if label:
         out += [
-            f'<rect x="{PAD}" y="{H-40}" width="{22 + 6*len(label)}" '
-            f'height="22" rx="11" fill="{pill_bg}" stroke="{border}"/>',
-            f'<text x="{PAD+11}" y="{H-25}" font-family="{FONT}" '
+            f'<rect x="{PAD}" y="{PILL_Y}" width="{22 + 6*len(label)}" '
+            f'height="{PILL_H}" rx="11" fill="{pill_bg}" stroke="{border}"/>',
+            f'<text x="{PAD+11}" y="{PILL_Y + 15}" font-family="{FONT}" '
             f'font-size="11" fill="{pill_c}">{label}</text>']
     out.append("</svg>")
     return "\n".join(out)
