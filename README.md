@@ -14,14 +14,80 @@ Ask me about dark matter, differentiable simulation, or cheese.
 
 > 📄 paper · 🔨 paper repo · 💻 code · 📖 docs · 🗄️ data
 
-| Publication | |
-|:---|---:|
-| Euclid Collaboration, **N. Starkman**, et al. *Euclid: The Geometry of Dark Matter Halos from Extragalactic Streams — a Pilot Study.* Submitted to A&A. arXiv:2606.21774 | [📄](https://ui.adsabs.harvard.edu/abs/2026arXiv260621774E/abstract) |
-| **N. Starkman**, et al. (2025). *unxt: A Python package for unit-aware computing with JAX.* JOSS 10(107), 7771. | [📄](https://doi.org/10.21105/joss.07771) [💻](https://github.com/GalacticDynamics/unxt) [📖](https://unxt.readthedocs.io/en/stable/) |
-| **N. Starkman**, et al. (2025). *Stream Members Only: Data-Driven Characterization of Stellar Streams with Mixture Density Networks.* ApJ 979, 155. | [📄](https://iopscience.iop.org/article/10.3847/1538-4357/ad94f2) [🔨](https://github.com/nstarman/stellar_stream_density_ml_paper) [🗄️](https://zenodo.org/records/10211410) |
-| **N. Starkman**, A. Kosowsky, G. Starkman (2024). *Angular Correlations of Cosmic Microwave Background Spectrum Distortions from Photon Diffusion.* MNRAS 529, 2274. | [📄](https://academic.oup.com/mnras/article/529/3/2274/7630233) [🔨](https://github.com/nstarman/Temperature-Diffusion-Spectral-Distortion-Paper) [🗄️](https://zenodo.org/record/8400583) |
-| **N. Starkman**, et al. (2023). *Characterizing Stream Tracks and Comparing to Simulation.* MNRAS 522, 2735. | [📄](https://doi.org/10.1093/mnras/stad1166) [🔨](https://github.com/nstarman/trackstream_paper) [💻](https://github.com/nstarman/trackstream) [📖](https://trackstream.readthedocs.io/en/latest/) [🗄️](https://zenodo.org/record/7265571) |
-| The Astropy Collaboration, A. M. Price-Whelan, …, **N. Starkman**, et al. (2022). *The Astropy Project: Sustaining and Growing a Community-oriented Open-source Project and the Latest Major Release (v5.0) of the Core Package.* ApJ 935, 167. | [📄](https://arxiv.org/abs/2206.14220) [🔨](https://github.com/astropy/astropy-v5.0-paper) [💻](https://github.com/astropy/astropy) [📖](https://www.astropy.org) [🗄️](https://doi.org/10.5281/zenodo.8325470) |
+<table>
+<tr>
+<td>
+
+Euclid Collaboration, **N. Starkman**, et al. *Euclid: The Geometry of Dark Matter Halos from Extragalactic Streams — a Pilot Study.* Submitted to A&A. arXiv:2606.21774
+
+</td>
+<td align="right">
+
+[📄](https://ui.adsabs.harvard.edu/abs/2026arXiv260621774E/abstract)
+
+</td>
+</tr>
+<tr>
+<td>
+
+**N. Starkman**, et al. (2025). *unxt: A Python package for unit-aware computing with JAX.* JOSS 10(107), 7771.
+
+</td>
+<td align="right">
+
+[📄](https://doi.org/10.21105/joss.07771) [💻](https://github.com/GalacticDynamics/unxt) [📖](https://unxt.readthedocs.io/en/stable/)
+
+</td>
+</tr>
+<tr>
+<td>
+
+**N. Starkman**, et al. (2025). *Stream Members Only: Data-Driven Characterization of Stellar Streams with Mixture Density Networks.* ApJ 979, 155.
+
+</td>
+<td align="right">
+
+[📄](https://iopscience.iop.org/article/10.3847/1538-4357/ad94f2) [🔨](https://github.com/nstarman/stellar_stream_density_ml_paper) [🗄️](https://zenodo.org/records/10211410)
+
+</td>
+</tr>
+<tr>
+<td>
+
+**N. Starkman**, A. Kosowsky, G. Starkman (2024). *Angular Correlations of Cosmic Microwave Background Spectrum Distortions from Photon Diffusion.* MNRAS 529, 2274.
+
+</td>
+<td align="right">
+
+[📄](https://academic.oup.com/mnras/article/529/3/2274/7630233) [🔨](https://github.com/nstarman/Temperature-Diffusion-Spectral-Distortion-Paper) [🗄️](https://zenodo.org/record/8400583)
+
+</td>
+</tr>
+<tr>
+<td>
+
+**N. Starkman**, et al. (2023). *Characterizing Stream Tracks and Comparing to Simulation.* MNRAS 522, 2735.
+
+</td>
+<td align="right">
+
+[📄](https://doi.org/10.1093/mnras/stad1166) [🔨](https://github.com/nstarman/trackstream_paper) [💻](https://github.com/nstarman/trackstream) [📖](https://trackstream.readthedocs.io/en/latest/) [🗄️](https://zenodo.org/record/7265571)
+
+</td>
+</tr>
+<tr>
+<td>
+
+The Astropy Collaboration, A. M. Price-Whelan, …, **N. Starkman**, et al. (2022). *The Astropy Project: Sustaining and Growing a Community-oriented Open-source Project and the Latest Major Release (v5.0) of the Core Package.* ApJ 935, 167.
+
+</td>
+<td align="right">
+
+[📄](https://arxiv.org/abs/2206.14220) [🔨](https://github.com/astropy/astropy-v5.0-paper) [💻](https://github.com/astropy/astropy) [📖](https://www.astropy.org) [🗄️](https://doi.org/10.5281/zenodo.8325470)
+
+</td>
+</tr>
+</table>
 
 ➡️ Full publication list on [**ADS**](https://ui.adsabs.harvard.edu/search/p_=0&q=author%3A%22Starkman%2C%20Nathaniel%22&sort=date%20desc%2C%20bibcode%20desc).
 
