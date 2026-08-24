@@ -1,6 +1,6 @@
-I am a **Brinson Prize Fellow** and postdoctoral associate at the **MIT Kavli Institute for Astrophysics and Space Research**. I work on dark matter — what it is, and how it shapes galaxies — mostly by reading the gravitational field written into stellar streams, in the Milky Way and now beyond it with *Euclid*. I received my PhD from the University of Toronto.
+I am a **Brinson Prize Fellow** and postdoctoral associate at the **MIT Kavli Institute for Astrophysics and Space Research**. I work on dark matter — what it is, and how it shapes galaxies — mostly by constraining the potentials of galaxies using stellar streams, in the Milky Way and far beyond using large-scale surveys. I received my PhD from the University of Toronto.
 
-I also write much of the scientific software I use. I'm a core developer and Coordination Committee member of [Astropy](https://www.astropy.org), and I wrote most of the JAX-based galactic dynamics ecosystem (see below). I have strong opinions about good software development in science.
+I also build the scientific software I use. I'm a core developer and Coordination Committee member of [Astropy](https://www.astropy.org), and I wrote much of the JAX-based galactic dynamics ecosystem (see below). I have strong opinions about open-source software in science — it is research infrastructure, and deserves to be built and credited as such.
 
 Ask me about dark matter, differentiable simulation, or cheese.
 
