@@ -37,8 +37,11 @@ Ask me about dark matter, differentiable simulation, or cheese.
         --jq '.[] | select(.stargazerCount >= 50) | "\(.stargazerCount) \(.name)"'
       gh api repos/nstarman/quax --jq .stargazers_count
 
-  Last checked: 2026-08-24. Badged: astropy (5284), quax (143), unxt (67).
-  Closest below the line: galax (49), coordinax (37) — galax is one star away.
+  EXCEPTION: galax is badged regardless of count — it is the flagship science
+  library, and the threshold is a presentation rule, not a judgement about it.
+
+  Last checked: 2026-08-24. Badged: astropy (5284), quax (143), unxt (67),
+  galax (49, exempt). Closest below the line: coordinax (37).
 -->
 
 <table>
@@ -57,6 +60,8 @@ Ask me about dark matter, differentiable simulation, or cheese.
 #### 🌌 [galax](https://github.com/GalacticDynamics/galax)
 
 **Galactic dynamics in JAX.** Orbit integration, potentials, and stream generation — GPU-accelerated and fully differentiable.
+
+[![stars](https://img.shields.io/github/stars/GalacticDynamics/galax?style=social)](https://github.com/GalacticDynamics/galax)
 
 </td>
 </tr>
