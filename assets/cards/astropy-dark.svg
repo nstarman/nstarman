@@ -2,9 +2,9 @@
 <title>Astropy</title>
 <rect x="0.5" y="0.5" width="399" height="161" rx="12" fill="#0d1117" stroke="#30363d"/>
 <text x="18" y="38" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" font-weight="600" fill="#2f81f7">🔭  Astropy</text>
-<text x="18" y="66" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">The community core package for astronomy in Python. I&#x27;m a</text>
-<text x="18" y="86" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">core developer, on the Coordination Committee, and on</text>
-<text x="18" y="106" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">Strategic Planning.</text>
+<text x="18" y="66" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">The community core package for astronomy in Python. The</text>
+<text x="18" y="86" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">collaboration received the 2025 AAS Lancelot M. Berkeley</text>
+<text x="18" y="106" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">Prize.</text>
 <rect x="18" y="122" width="58" height="22" rx="11" fill="#161b22" stroke="#30363d"/>
 <text x="29" y="137" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11" fill="#8b949e">★ 5.3k</text>
 </svg>

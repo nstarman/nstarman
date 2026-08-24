@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="162" viewBox="0 0 400 162" role="img" aria-label="dataclassish">
-<title>dataclassish</title>
-<rect x="0.5" y="0.5" width="399" height="161" rx="12" fill="#0d1117" stroke="#30363d"/>
-<text x="18" y="38" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" font-weight="600" fill="#2f81f7">🧩  dataclassish</text>
-<text x="18" y="66" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">dataclasses, for everything. replace, fields and asdict,</text>
-<text x="18" y="86" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">generalized to any object rather than just dataclasses.</text>
-</svg>

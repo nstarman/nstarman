@@ -1,47 +1,56 @@
-name: Refresh software cards
+name: Refresh from the CV database
 
-# The star pill on each software card is baked into a committed SVG, so it
-# goes stale on its own. Regenerate monthly: the script re-fetches every star
-# count and re-applies the threshold, so a repo crossing 50 stars gains its
-# pill without anyone editing the README.
+# Everything in README.md — bio, links, publications, software — is rendered
+# from nstarman/nstarman.github.io, which is the single source of truth. This
+# regenerates it, so an edit there reaches this profile without anyone touching
+# a second copy.
+#
+# It also rebuilds the software card SVGs, whose star pills are baked in and go
+# stale on their own.
 
 on:
   schedule:
     - cron: "0 6 1 * *"  # 06:00 UTC on the 1st of each month
-  workflow_dispatch:      # and on demand, to check a change immediately
+  workflow_dispatch:
+  repository_dispatch:
+    types: [data-changed]   # fired by the site repo when data/ changes
 
 permissions:
   contents: write
 
 concurrency:
-  group: refresh-software-cards
+  group: refresh-from-database
   cancel-in-progress: false
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # TODO: drop once the rebuild is merged and the site repo's default branch
+      # carries data/. Until then the database only exists on `redesign`.
+      DATA_REF: redesign
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Regenerate cards
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 scripts/make_software_cards.py
+      - name: Render README and cards from the database
+        run: |
+          python3 scripts/build_readme.py
+          python3 scripts/make_software_cards.py
 
       - name: Commit if anything changed
         run: |
-          if git diff --quiet -- assets/cards; then
-            echo "Star counts unchanged — nothing to commit."
+          if git diff --quiet -- README.md assets/cards; then
+            echo "Nothing changed."
             exit 0
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/cards
-          git commit -m "Refresh software card star counts
+          git add README.md assets/cards
+          git commit -m "Refresh README and software cards from the CV database
 
           Automated by .github/workflows/refresh-software-cards.yml."
           git push

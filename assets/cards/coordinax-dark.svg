@@ -2,6 +2,6 @@
 <title>coordinax</title>
 <rect x="0.5" y="0.5" width="399" height="161" rx="12" fill="#0d1117" stroke="#30363d"/>
 <text x="18" y="38" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" font-weight="600" fill="#2f81f7">🧭  coordinax</text>
-<text x="18" y="66" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">Coordinates in JAX. Vectors, frames and transformations —</text>
-<text x="18" y="86" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">differentiable, and unit-aware via unxt.</text>
+<text x="18" y="66" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">Vectors, frames and transformations — differentiable, and</text>
+<text x="18" y="86" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">unit-aware via unxt.</text>
 </svg>

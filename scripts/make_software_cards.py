@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """Render the Software-section cards of README.md as self-hosted SVGs.
 
+Card content comes from the shared database in nstarman/nstarman.github.io, not
+from this file. It used to keep its own copy of every blurb, and that copy had
+already drifted from the website.
+
 GitHub's markdown sanitizer strips `style`, `class` and `<style>`, so a CSS
 card grid is impossible in a README. The cards are therefore images: one SVG
 per library per colour scheme, selected at view time with <picture>.
@@ -13,8 +17,12 @@ monthly by .github/workflows/refresh-software-cards.yml, or by hand:
 """
 
 import subprocess
+import sys
 from html import escape
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import shared_data as sd  # noqa: E402
 
 # A pill below this reads as a liability rather than a credential.
 THRESHOLD = 50
@@ -37,39 +45,21 @@ THEMES = {
 }
 FONT = "system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
 
-# slug -> (repo, emoji, title, description)
-CARDS = {
-    "astropy": ("astropy/astropy", "🔭", "Astropy",
-        "The community core package for astronomy in Python. I'm a core "
-        "developer, on the Coordination Committee, and on Strategic Planning."),
-    "galax": ("GalacticDynamics/galax", "🌌", "galax",
-        "Galactic dynamics in JAX. Orbit integration, potentials and stream "
-        "generation — GPU-accelerated and fully differentiable."),
-    "unxt": ("GalacticDynamics/unxt", "📏", "unxt",
-        "Units in JAX. Unit-aware quantities that survive jit, grad and vmap. "
-        "Published in JOSS."),
-    "coordinax": ("GalacticDynamics/coordinax", "🧭", "coordinax",
-        "Coordinates in JAX. Vectors, frames and transformations — "
-        "differentiable, and unit-aware via unxt."),
-    "quax": ("nstarman/quax", "🔀", "quax",
-        "Multiple dispatch in JAX. Custom array-ish types that work with JAX "
-        "primitives — the substrate the rest of the stack builds on."),
-    "quaxed": ("GalacticDynamics/quaxed", "⚡", "quaxed",
-        "Pre-quaxed libraries. Drop-in jax.numpy and friends, already wrapped "
-        "for dispatch over abstract array types."),
-    "mvgkde": ("nstarman/mvgkde", "📊", "mvgkde",
-        "Multivariate Gaussian KDE. Kernel density estimation in JAX — "
-        "differentiable, vectorized, bandwidth-tunable."),
-    "dataclassish": ("GalacticDynamics/dataclassish", "🧩", "dataclassish",
-        "dataclasses, for everything. replace, fields and asdict, generalized "
-        "to any object rather than just dataclasses."),
-    "jaxmore": ("GalacticDynamics/jaxmore", "➕", "jaxmore",
-        "There's more to JAX. The utilities you keep re-writing, collected in "
-        "one place."),
-    "phasecurvefit": ("GalacticDynamics/phasecurvefit", "〰️", "phasecurvefit",
-        "Paths through phase space. Fit a curve through phase-space points — "
-        "streams, orbits, trajectories. Under JOSS & pyOpenSci review."),
+# Emoji are presentation, so they stay here; every word comes from the database.
+EMOJI = {
+    "astropy": "\U0001F52D", "galax": "\U0001F30C", "unxt": "\U0001F4CF",
+    "coordinax": "\U0001F9ED", "quax": "\U0001F500",
 }
+DEFAULT_EMOJI = "\U0001F4E6"
+
+TIER_ORDER = {"lead": 0, "headline": 1}
+
+
+def cards():
+    """The lead and headline packages, in the order the site shows them."""
+    picked = [s for s in sd.of_type("software") if s.get("tier") in TIER_ORDER]
+    picked.sort(key=lambda s: (TIER_ORDER[s["tier"]], s["title"].lower()))
+    return picked
 
 
 def star_count(repo):
@@ -106,8 +96,11 @@ def wrap(text, width_px, px_per_char=6.15, max_lines=3):
     return lines
 
 
-def render(slug, theme, label):
-    _repo, emoji, title, desc = CARDS[slug]
+def render(item, theme, label):
+    slug = item["id"]
+    emoji = EMOJI.get(slug, DEFAULT_EMOJI)
+    title = item["title"]
+    desc = item.get("long") or item.get("short") or ""
     bg, border, title_c, body_c, pill_bg, pill_c = THEMES[theme]
 
     out = [
@@ -137,18 +130,25 @@ def main():
     outdir = Path(__file__).resolve().parent.parent / "assets" / "cards"
     outdir.mkdir(parents=True, exist_ok=True)
 
+    picked = cards()
     pilled, plain = [], []
-    for slug, (repo, *_) in CARDS.items():
-        n = star_count(repo)
+    for item in picked:
+        slug = item["id"]
+        n = star_count(item["repo"]) if item.get("repo") else None
         show = n is not None and (n >= THRESHOLD or slug in ALWAYS_PILL)
         label = pill_label(n) if show else ""
         for theme in THEMES:
             (outdir / f"{slug}-{theme}.svg").write_text(
-                render(slug, theme, label), encoding="utf-8")
-        (pilled if show else plain).append(
-            f"{slug} ({n if n is not None else '?'})")
+                render(item, theme, label), encoding="utf-8")
+        (pilled if show else plain).append(f"{slug} ({n if n is not None else '?'})")
 
-    print(f"\nwrote {len(CARDS) * len(THEMES)} cards to {outdir}")
+    keep = {i["id"] for i in picked}
+    for stale in sorted(outdir.glob("*.svg")):
+        if stale.stem.rsplit("-", 1)[0] not in keep:
+            stale.unlink()
+            print(f"  - removed {stale.name} (no longer lead/headline)")
+
+    print(f"\nwrote {len(picked) * len(THEMES)} cards to {outdir}")
     print(f"pilled  (>= {THRESHOLD}, or exempt): {', '.join(pilled) or 'none'}")
     print(f"plain   (below threshold):          {', '.join(plain) or 'none'}")
 
