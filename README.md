@@ -1,4 +1,4 @@
-I am a **Brinson Prize Fellow** and postdoctoral associate at the **MIT Kavli Institute for Astrophysics and Space Research**. I work on dark matter — what it is, and how it shapes galaxies — mostly by constraining the potentials of galaxies using stellar streams, in the Milky Way and far beyond using large-scale surveys. I received my PhD from the University of Toronto.
+I am a **Brinson Prize Fellow** and postdoctoral associate at the **MIT Kavli Institute for Astrophysics and Space Research**. I work on dark matter — what it is, and how it shapes galaxies — mostly by using stellar streams to constrain their gravitational potentials, in the Milky Way and far beyond it with large-scale surveys. I received my PhD from the University of Toronto.
 
 I also build the scientific software I use. I'm a core developer and Coordination Committee member of [Astropy](https://www.astropy.org), and I wrote much of the JAX-based galactic dynamics ecosystem (see below). I have strong opinions about open-source software in science — it is research infrastructure, and deserves to be built and credited as such.
 
