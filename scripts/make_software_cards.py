@@ -96,15 +96,22 @@ def wrap(text, width_px, px_per_char=6.15, max_lines=3):
     return lines
 
 
-def render(item, theme, label):
+def role_band(item):
+    """Height the lead card's role line adds. Zero for every other card."""
+    role = item.get("role") if item.get("tier") == "lead" else None
+    if not role:
+        return 0
+    return 4 + 15 * len(wrap(role.upper(), W - 2 * PAD, px_per_char=6.0, max_lines=2))
+
+
+def render(item, theme, label, height):
     slug = item["id"]
     emoji = EMOJI.get(slug, DEFAULT_EMOJI)
     title = item["title"]
     desc = item.get("details") or item.get("summary") or ""
     bg, border, title_c, body_c, pill_bg, pill_c = THEMES[theme]
 
-    H_card = H + (4 + 15 * len(wrap(item["role"].upper(), W - 2 * PAD, px_per_char=6.0, max_lines=2))
-                  if (item.get("role") and item.get("tier") == "lead") else 0)
+    H_card = height
     out = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H_card}" '
         f'viewBox="0 0 {W} {H_card}" role="img" aria-label="{escape(title)}">',
@@ -132,10 +139,11 @@ def render(item, theme, label):
             f'<text x="{PAD}" y="{DESC_Y + offset + i*DESC_LEADING}" font-family="{FONT}" '
             f'font-size="13" fill="{body_c}">{escape(line)}</text>')
     if label:
+        pill_y = H_card - PAD - PILL_H
         out += [
-            f'<rect x="{PAD}" y="{PILL_Y + offset}" width="{22 + 6*len(label)}" '
+            f'<rect x="{PAD}" y="{pill_y}" width="{22 + 6*len(label)}" '
             f'height="{PILL_H}" rx="11" fill="{pill_bg}" stroke="{border}"/>',
-            f'<text x="{PAD+11}" y="{PILL_Y + offset + 15}" font-family="{FONT}" '
+            f'<text x="{PAD+11}" y="{pill_y + 15}" font-family="{FONT}" '
             f'font-size="11" fill="{pill_c}">{label}</text>']
     out.append("</svg>")
     return "\n".join(out)
@@ -146,6 +154,8 @@ def main():
     outdir.mkdir(parents=True, exist_ok=True)
 
     picked = cards()
+    # One height for the whole set, so the cards line up in the README grid.
+    height = H + max((role_band(i) for i in picked), default=0)
     pilled, plain = [], []
     for item in picked:
         slug = item["id"]
@@ -154,7 +164,7 @@ def main():
         label = pill_label(n) if show else ""
         for theme in THEMES:
             (outdir / f"{slug}-{theme}.svg").write_text(
-                render(item, theme, label), encoding="utf-8")
+                render(item, theme, label, height), encoding="utf-8")
         (pilled if show else plain).append(f"{slug} ({n if n is not None else '?'})")
 
     keep = {i["id"] for i in picked}
