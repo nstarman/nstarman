@@ -27,9 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # TODO: drop once the rebuild is merged and the site repo's default branch
-      # carries data/. Until then the database only exists on `redesign`.
-      DATA_REF: redesign
+      DATA_REF: master
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
