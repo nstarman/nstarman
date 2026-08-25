@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="162" viewBox="0 0 400 162" role="img" aria-label="unxt">
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="181" viewBox="0 0 400 181" role="img" aria-label="unxt">
 <title>unxt</title>
-<rect x="0.5" y="0.5" width="399" height="161" rx="12" fill="#0d1117" stroke="#30363d"/>
+<rect x="0.5" y="0.5" width="399" height="180" rx="12" fill="#0d1117" stroke="#30363d"/>
 <text x="18" y="38" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" font-weight="600" fill="#2f81f7">📏  unxt</text>
 <text x="18" y="66" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8b949e">Unit-aware quantities that survive jit, grad and vmap.</text>
-<rect x="18" y="122" width="46" height="22" rx="11" fill="#161b22" stroke="#30363d"/>
-<text x="29" y="137" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11" fill="#8b949e">★ 67</text>
+<rect x="18" y="141" width="46" height="22" rx="11" fill="#161b22" stroke="#30363d"/>
+<text x="29" y="156" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11" fill="#8b949e">★ 67</text>
 </svg>
