@@ -1,4 +1,4 @@
-I am a computational astrophysicist working on dark matter — what it is, and how it shapes galaxies — mostly by using stellar streams to constrain their gravitational potentials, in the Milky Way and far beyond it with large-scale surveys.
+I am a computational astrophysicist researching dark matter — what it is, and how it shapes galaxies — mostly by using stellar streams to constrain their gravitational potentials, in the Milky Way and far beyond it with large-scale surveys.
 
 When a star cluster is torn apart by its host galaxy, the debris can trace a long, thin stream. Properties of the stream — its path, shape, width, etc — are all sensitive to properties of the host, including its dark matter. I develop and apply novel methods to study these streams and learn about the dark matter; I also build much of the software powering these methods and analyses. I am also a core developer of Astropy, helping to power all of astronomy.
 
@@ -14,9 +14,9 @@ When a star cluster is torn apart by its host galaxy, the debris can trace a lon
 
 1. Euclid Collaboration, **N. Starkman**, J. Nibauer, S. Pearson, S. Wu, et al. (2026). *Euclid Quick Data Release (Q1): The geometry of dark matter halos from extragalactic streams.* Astronomy & Astrophysics. *submitted.*&nbsp;&nbsp;[📜](https://arxiv.org/abs/2606.21774 "preprint") [📄](https://ui.adsabs.harvard.edu/abs/2026arXiv260621774E/abstract "ADS")
 1. **N. Starkman** (2025). *unxt: A Python package for unit-aware computing with JAX.* Journal of Open Source Software 10, 7771.&nbsp;&nbsp;[📄](https://doi.org/10.21105/joss.07771 "paper") [💻](https://github.com/GalacticDynamics/unxt "code") [📖](https://unxt.readthedocs.io/en/stable/ "docs")
-1. **N. Starkman**, J. Nibauer, J. Bovy, J. Webb, et al. (2025). *Stream Members Only: Data-Driven Characterization of Stellar Streams with Mixture Density Networks.* The Astrophysical Journal 979, 155.&nbsp;&nbsp;[📄](https://iopscience.iop.org/article/10.3847/1538-4357/ad94f2 "paper") [🔨](https://github.com/nstarman/stellar_stream_density_ml_paper "paper repo") [🗄️](https://zenodo.org/records/10211410 "data")
+1. **N. Starkman**, J. Nibauer, J. Bovy, J. Webb, et al. (2025). *Stream Members Only: Data-Driven Characterization of Stellar Streams with Mixture Density Networks.* The Astrophysical Journal 980, 253.&nbsp;&nbsp;[📄](https://iopscience.iop.org/article/10.3847/1538-4357/ad94f2 "paper") [🔨](https://github.com/nstarman/stellar_stream_density_ml_paper "paper repo") [🗄️](https://zenodo.org/records/10211410 "data")
 1. **N. Starkman**, A. Kosowsky, G. Starkman (2024). *Angular Correlations of Cosmic Microwave Background Spectrum Distortions from Photon Diffusion.* Monthly Notices of the Royal Astronomical Society 529, 2274.&nbsp;&nbsp;[📄](https://academic.oup.com/mnras/article/529/3/2274/7630233 "paper") [🔨](https://github.com/nstarman/Temperature-Diffusion-Spectral-Distortion-Paper "paper repo") [🗄️](https://zenodo.org/record/8400583 "data")
-1. **N. Starkman**, J. Bovy, J. Webb, D. Calvetti, et al. (2023). *Characterizing Stream Tracks and Comparing to Simulation.* Monthly Notices of the Royal Astronomical Society 522, 2735.&nbsp;&nbsp;[📄](https://doi.org/10.1093/mnras/stad1166 "paper") [🔨](https://github.com/nstarman/trackstream_paper "paper repo") [💻](https://github.com/nstarman/trackstream "code") [📖](https://trackstream.readthedocs.io/en/latest/ "docs") [🗄️](https://zenodo.org/record/7265571 "data")
+1. **N. Starkman**, J. Bovy, J. Webb, D. Calvetti, et al. (2023). *On the fast track: Rapid construction of stellar stream paths.* Monthly Notices of the Royal Astronomical Society 522, 5022.&nbsp;&nbsp;[📄](https://doi.org/10.1093/mnras/stad1166 "paper") [🔨](https://github.com/nstarman/trackstream_paper "paper repo") [💻](https://github.com/nstarman/trackstream "code") [📖](https://trackstream.readthedocs.io/en/latest/ "docs") [🗄️](https://zenodo.org/record/7265571 "data")
 
 ➡️ Full publication list on [**ADS**](https://ui.adsabs.harvard.edu/search/q=author%3A%22Starkman%2C%20Nathaniel%22&sort=date%20desc).
 
@@ -34,7 +34,7 @@ When a star cluster is torn apart by its host galaxy, the debris can trace a lon
 <summary><i>Click to expand:</i> the rest of the ecosystem.</summary>
 
 
-- [**cosmology.api**](https://pypi.org/project/cosmology.api/): A standard interface for cosmology libraries [💻](https://pypi.org/project/cosmology.api/ "code") [📖](https://cosmology.readthedocs.io/projects/api/en/latest/ "docs") [🗄️](https://doi.org/10.5281/zenodo.8331505 "data")
+- [**cosmology.api**](https://pypi.org/project/cosmology.api/): A standard interface for cosmology libraries [💻](https://pypi.org/project/cosmology.api/ "code") [📖](https://cosmology.readthedocs.io/en/latest/ "docs") [🗄️](https://doi.org/10.5281/zenodo.8331505 "data")
 - [**dataclassish**](https://github.com/GalacticDynamics/dataclassish): dataclasses, for everything [💻](https://github.com/GalacticDynamics/dataclassish "code")
 - [**diffraxtra**](https://github.com/GalacticDynamics/diffraxtra): Extras for Diffrax [💻](https://github.com/GalacticDynamics/diffraxtra "code")
 - [**galactic_dynamics_interoperability**](https://github.com/GalacticDynamics/galactic_dynamics_interoperability): Interoperability between galactic dynamics libraries [💻](https://github.com/GalacticDynamics/galactic_dynamics_interoperability "code")
