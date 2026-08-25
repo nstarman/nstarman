@@ -103,24 +103,39 @@ def render(item, theme, label):
     desc = item.get("long") or item.get("short") or ""
     bg, border, title_c, body_c, pill_bg, pill_c = THEMES[theme]
 
+    H_card = H + (4 + 15 * len(wrap(item["role"].upper(), W - 2 * PAD, px_per_char=6.0, max_lines=2))
+                  if (item.get("role") and item.get("tier") == "lead") else 0)
     out = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" '
-        f'viewBox="0 0 {W} {H}" role="img" aria-label="{escape(title)}">',
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H_card}" '
+        f'viewBox="0 0 {W} {H_card}" role="img" aria-label="{escape(title)}">',
         f'<title>{escape(title)}</title>',
-        f'<rect x="0.5" y="0.5" width="{W-1}" height="{H-1}" rx="12" '
+        f'<rect x="0.5" y="0.5" width="{W-1}" height="{H_card-1}" rx="12" '
         f'fill="{bg}" stroke="{border}"/>',
         f'<text x="{PAD}" y="{TITLE_Y}" font-family="{FONT}" font-size="17" '
         f'font-weight="600" fill="{title_c}">{emoji}  {escape(title)}</text>',
     ]
+    # Only the lead package carries its roles on the card, as on the website.
+    role = item.get("role") if item.get("tier") == "lead" else None
+    offset = 0
+    if role:
+        # Wrapped, not just shrunk: at 10.5pt the roles ran off the card edge,
+        # and a longer role would do it again at any fixed size.
+        lines = wrap(role.upper(), W - 2 * PAD, px_per_char=6.0, max_lines=2)
+        for i, line in enumerate(lines):
+            out.append(
+                f'<text x="{PAD}" y="{DESC_Y - 4 + i*15}" font-family="{FONT}" font-size="9.5" '
+                f'letter-spacing="0.4" fill="{title_c}">{escape(line)}</text>')
+        offset = 4 + 15 * len(lines)
+
     for i, line in enumerate(wrap(desc, W - 2 * PAD, max_lines=DESC_LINES)):
         out.append(
-            f'<text x="{PAD}" y="{DESC_Y + i*DESC_LEADING}" font-family="{FONT}" '
+            f'<text x="{PAD}" y="{DESC_Y + offset + i*DESC_LEADING}" font-family="{FONT}" '
             f'font-size="13" fill="{body_c}">{escape(line)}</text>')
     if label:
         out += [
-            f'<rect x="{PAD}" y="{PILL_Y}" width="{22 + 6*len(label)}" '
+            f'<rect x="{PAD}" y="{PILL_Y + offset}" width="{22 + 6*len(label)}" '
             f'height="{PILL_H}" rx="11" fill="{pill_bg}" stroke="{border}"/>',
-            f'<text x="{PAD+11}" y="{PILL_Y + 15}" font-family="{FONT}" '
+            f'<text x="{PAD+11}" y="{PILL_Y + offset + 15}" font-family="{FONT}" '
             f'font-size="11" fill="{pill_c}">{label}</text>']
     out.append("</svg>")
     return "\n".join(out)
