@@ -34,7 +34,8 @@ def _gh(path: str) -> str:
 
 def _fetch(url: str) -> str:
     return subprocess.run(
-        ["curl", "-sfL", "--max-time", "30", url],
+        ["curl", "-sfL", "--max-time", "30",
+         "--retry", "4", "--retry-delay", "2", "--retry-all-errors", url],
         capture_output=True, text=True, check=True,
     ).stdout
 
