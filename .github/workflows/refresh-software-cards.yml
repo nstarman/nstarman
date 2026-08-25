@@ -17,6 +17,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: refresh-from-database
@@ -39,16 +40,37 @@ jobs:
           python3 scripts/build_readme.py
           python3 scripts/make_software_cards.py
 
-      - name: Commit if anything changed
+      # main requires pull requests and verified signatures, so this cannot push.
+      # Files go through the contents API instead, which GitHub signs, onto a
+      # branch that carries a single open PR.
+      - name: Open a PR if anything changed
+        env:
+          BRANCH: chore/refresh-database
         run: |
-          if git diff --quiet -- README.md assets/cards; then
+          changed=$(git diff --name-only -- README.md assets/cards)
+          if [ -z "$changed" ]; then
             echo "Nothing changed."
             exit 0
           fi
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md assets/cards
-          git commit -m "Refresh README and software cards from the CV database
+          echo "Changed:"; echo "$changed" | sed 's/^/  /'
 
-          Automated by .github/workflows/refresh-software-cards.yml."
-          git push
+          repo=${{ github.repository }}
+          base=$(git rev-parse HEAD)
+
+          # Start the branch from the commit this ran against, or move it there.
+          gh api "repos/$repo/git/refs" -f ref="refs/heads/$BRANCH" -f sha="$base" \
+            || gh api -X PATCH "repos/$repo/git/refs/heads/$BRANCH" -f sha="$base" -F force=true
+
+          for f in $changed; do
+            sha=$(gh api "repos/$repo/contents/$f?ref=$BRANCH" -q .sha 2>/dev/null || true)
+            gh api -X PUT "repos/$repo/contents/$f" \
+              -f message="Refresh $f from the CV database" \
+              -f branch="$BRANCH" \
+              -f content="$(base64 < "$f" | tr -d '\n')" \
+              ${sha:+-f sha="$sha"} --silent
+          done
+
+          gh pr view "$BRANCH" --json state -q .state 2>/dev/null | grep -q OPEN \
+            || gh pr create --base "${{ github.ref_name }}" --head "$BRANCH" \
+                 --title "Refresh from the CV database" \
+                 --body "Rendered from the database on nstarman.github.io@$DATA_REF by .github/workflows/refresh-software-cards.yml."
