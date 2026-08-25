@@ -19,9 +19,9 @@ import subprocess
 from functools import lru_cache
 
 REPO = "nstarman/nstarman.github.io"
-# Set DATA_REF=redesign until the rebuild is merged; the default is the branch
-# the site is published from.
-REF = os.environ.get("DATA_REF", "master")
+# The branch the site is published from. Override to render this README from
+# records on a branch before they are merged.
+REF = os.environ.get("DATA_REF", "main")
 
 
 def _gh(path: str) -> str:
