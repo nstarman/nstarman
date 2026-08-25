@@ -97,7 +97,7 @@ def software() -> list[str]:
                 "<summary><i>Click to expand:</i> the rest of the ecosystem.</summary>", "", ""]
         for s in rest:
             url = sd.link(s, "code") or sd.link(s, "docs") or "#"
-            desc = s.get("short") or s.get("long") or ""
+            desc = s.get("summary") or s.get("details") or ""
             trail = links_line(s)
             out.append(f'- [**{s["title"]}**]({url}): {desc}{" " + trail if trail else ""}')
         out += ["", "</details>"]

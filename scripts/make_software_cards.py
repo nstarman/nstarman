@@ -100,7 +100,7 @@ def render(item, theme, label):
     slug = item["id"]
     emoji = EMOJI.get(slug, DEFAULT_EMOJI)
     title = item["title"]
-    desc = item.get("long") or item.get("short") or ""
+    desc = item.get("details") or item.get("summary") or ""
     bg, border, title_c, body_c, pill_bg, pill_c = THEMES[theme]
 
     H_card = H + (4 + 15 * len(wrap(item["role"].upper(), W - 2 * PAD, px_per_char=6.0, max_lines=2))
