@@ -100,7 +100,7 @@ def render(item, theme, label):
     slug = item["id"]
     emoji = EMOJI.get(slug, DEFAULT_EMOJI)
     title = item["title"]
-    desc = item.get("long") or item.get("short") or ""
+    desc = item.get("details") or item.get("summary") or ""
     bg, border, title_c, body_c, pill_bg, pill_c = THEMES[theme]
 
     out = [
