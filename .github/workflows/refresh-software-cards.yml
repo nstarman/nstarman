@@ -47,7 +47,10 @@ jobs:
         env:
           BRANCH: chore/refresh-database
         run: |
-          changed=$(git diff --name-only -- README.md assets/cards)
+          # `git diff` alone misses brand-new cards (e.g. a package's first
+          # run in lead/headline tier): they're untracked, not modified, so a
+          # plain diff silently drops them from the PR. `-A` catches those too.
+          changed=$(git -c core.quotepath=off status --porcelain -- README.md assets/cards | awk '{print $2}')
           if [ -z "$changed" ]; then
             echo "Nothing changed."
             exit 0
