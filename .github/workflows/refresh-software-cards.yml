@@ -35,7 +35,26 @@ jobs:
         with:
           python-version: "3.12"
 
+      # The website draws the Software cards (and lays them out in rows), so build
+      # it at its main — the commit the data above is read from — and take the
+      # cards from the build, rather than from whatever was last deployed.
+      - uses: actions/checkout@v4
+        with:
+          repository: nstarman/nstarman.github.io
+          ref: main
+          path: site
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - name: Build the website
+        working-directory: site
+        run: npm ci && npm run build
+
       - name: Render README and cards from the database
+        env:
+          CARDS_DIR: site/dist/cards
         run: |
           python3 scripts/build_readme.py
           python3 scripts/make_software_cards.py

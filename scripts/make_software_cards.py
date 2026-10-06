@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Download the Software-section cards of README.md from the website.
+"""Copy the Software-section cards of README.md from the website.
 
 The cards are the website's own: nstarkman.space draws each lead and headline
 package's card as an SVG at build (/cards/<id>-<light|dark>.svg, listed in
@@ -9,8 +9,9 @@ the next run.
 
 GitHub's markdown sanitizer strips `style`, `class` and `<style>`, so the cards
 are images, one per package per colour scheme, selected at view time with
-<picture>. Run monthly by .github/workflows/refresh-software-cards.yml, or by
-hand:
+<picture>. Run monthly by .github/workflows/refresh-software-cards.yml, which builds the
+site and reads them from its dist/cards (CARDS_DIR); by hand it downloads them from
+the deployed site:
 
     python3 scripts/make_software_cards.py
 """
@@ -32,7 +33,7 @@ def main():
     for card in cards:
         for theme in THEMES:
             # Written as served: the site's drawing is the whole of the card.
-            (outdir / f"{card['id']}-{theme}.svg").write_text(sd._fetch(f"{sd.SITE}/cards/{card['id']}-{theme}.svg"), encoding="utf-8")
+            (outdir / f"{card['id']}-{theme}.svg").write_text(sd.card_file(f"{card['id']}-{theme}.svg"), encoding="utf-8")
 
     keep = {c["id"] for c in cards}
     for stale in sorted(outdir.glob("*.*")):

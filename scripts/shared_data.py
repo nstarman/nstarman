@@ -17,6 +17,7 @@ import json
 import os
 import subprocess
 from functools import lru_cache
+from pathlib import Path
 
 REPO = "nstarman/nstarman.github.io"
 # The branch the site is published from. Override to render this README from
@@ -40,8 +41,17 @@ def _fetch(url: str) -> str:
     ).stdout
 
 
-# The website itself, which also draws the Software cards as images.
+# The website itself, which also draws the Software cards as images — fetched from
+# the deployed site, or, where CARDS_DIR is set, read from a build of it (its
+# dist/cards): the refresh workflow builds the site at the commit it renders
+# the rest of the README from, so the cards cannot lag the data.
 SITE = os.environ.get("SITE", "https://nstarkman.space")
+CARDS_DIR = os.environ.get("CARDS_DIR")
+
+
+def card_file(name: str) -> str:
+    """One of the cards' files, by its name under /cards/."""
+    return (Path(CARDS_DIR) / name).read_text(encoding="utf-8") if CARDS_DIR else _fetch(f"{SITE}/cards/{name}")
 
 
 @lru_cache(maxsize=1)
@@ -49,7 +59,7 @@ def cards() -> tuple[dict, ...]:
     """The software cards the website draws as images, in the order it shows them
     and with the row, width and height it lays each out at (/cards/index.json):
     the lead alone, the others two to a row, a row's cards one height."""
-    return tuple(json.loads(_fetch(f"{SITE}/cards/index.json"))["cards"])
+    return tuple(json.loads(card_file("index.json"))["cards"])
 
 
 @lru_cache(maxsize=1)
