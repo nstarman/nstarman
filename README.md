@@ -23,10 +23,20 @@ When a star cluster is torn apart by its host galaxy, the debris can trace a lon
 ### 💻 Software
 
 <p>
-<a href="https://github.com/astropy/astropy"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/astropy-dark.svg"><img src="assets/cards/astropy-light.svg" alt="astropy" width="400"></picture></a>
+<a href="https://github.com/astropy/astropy"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/astropy-dark.svg"><img src="assets/cards/astropy-light.svg" alt="astropy" width="808"></picture></a>
+</p>
+
+<p>
 <a href="https://github.com/GalacticDynamics/coordinax"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/coordinax-dark.svg"><img src="assets/cards/coordinax-light.svg" alt="coordinax" width="400"></picture></a>
 <a href="https://github.com/GalacticDynamics/galax"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/galax-dark.svg"><img src="assets/cards/galax-light.svg" alt="galax" width="400"></picture></a>
+</p>
+
+<p>
 <a href="https://github.com/beartype/plum"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/plum-dark.svg"><img src="assets/cards/plum-light.svg" alt="plum" width="400"></picture></a>
+<a href="https://github.com/xggs-dev/potamides"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/potamides-dark.svg"><img src="assets/cards/potamides-light.svg" alt="potamides" width="400"></picture></a>
+</p>
+
+<p>
 <a href="https://github.com/nstarman/quax"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/quax-dark.svg"><img src="assets/cards/quax-light.svg" alt="quax" width="400"></picture></a>
 <a href="https://github.com/GalacticDynamics/unxt"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/unxt-dark.svg"><img src="assets/cards/unxt-light.svg" alt="unxt" width="400"></picture></a>
 </p>
