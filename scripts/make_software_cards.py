@@ -15,15 +15,12 @@ hand:
     python3 scripts/make_software_cards.py
 """
 
-import json
-import os
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import shared_data as sd  # noqa: E402
 
-SITE = os.environ.get("SITE", "https://nstarkman.space")
 THEMES = ("light", "dark")
 
 
@@ -31,11 +28,11 @@ def main():
     outdir = Path(__file__).resolve().parent.parent / "assets" / "cards"
     outdir.mkdir(parents=True, exist_ok=True)
 
-    cards = json.loads(sd._fetch(f"{SITE}/cards/index.json"))["cards"]
+    cards = sd.cards()
     for card in cards:
         for theme in THEMES:
             # Written as served: the site's drawing is the whole of the card.
-            (outdir / f"{card['id']}-{theme}.svg").write_text(sd._fetch(f"{SITE}/cards/{card['id']}-{theme}.svg"), encoding="utf-8")
+            (outdir / f"{card['id']}-{theme}.svg").write_text(sd._fetch(f"{sd.SITE}/cards/{card['id']}-{theme}.svg"), encoding="utf-8")
 
     keep = {c["id"] for c in cards}
     for stale in sorted(outdir.glob("*.*")):

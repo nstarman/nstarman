@@ -77,20 +77,24 @@ def publications() -> list[str]:
 
 def software() -> list[str]:
     soft = sd.of_type("software")
-    lead = [s for s in soft if s.get("tier") == "lead"]
-    head = sorted((s for s in soft if s.get("tier") == "headline"), key=lambda s: s["title"].lower())
     rest = sorted((s for s in soft if s.get("tier") == "other"), key=lambda s: s["title"].lower())
 
-    out = ["### 💻 Software", "", "<p>"]
-    for s in lead + head:
-        url = sd.link(s, "code") or sd.link(s, "docs") or "#"
-        out.append(
-            f'<a href="{url}"><picture>'
-            f'<source media="(prefers-color-scheme: dark)" srcset="assets/cards/{s["id"]}-dark.svg">'
-            f'<img src="assets/cards/{s["id"]}-light.svg" alt="{s["id"]}" width="400">'
-            f"</picture></a>"
-        )
-    out += ["</p>", ""]
+    # The website lays the cards out: its index says each one's row and width, and a
+    # row's cards are one height, so a row of inline images lines up.
+    out = ["### 💻 Software", ""]
+    rows: dict[int, list[dict]] = {}
+    for c in sd.cards():
+        rows.setdefault(c["row"], []).append(c)
+    for row in rows.values():
+        out.append("<p>")
+        for c in row:
+            out.append(
+                f'<a href="{c["href"]}"><picture>'
+                f'<source media="(prefers-color-scheme: dark)" srcset="assets/cards/{c["id"]}-dark.svg">'
+                f'<img src="assets/cards/{c["id"]}-light.svg" alt="{c["id"]}" width="{c["width"]}">'
+                f"</picture></a>"
+            )
+        out += ["</p>", ""]
 
     if rest:
         out += ["<details>",

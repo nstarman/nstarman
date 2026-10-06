@@ -40,6 +40,18 @@ def _fetch(url: str) -> str:
     ).stdout
 
 
+# The website itself, which also draws the Software cards as images.
+SITE = os.environ.get("SITE", "https://nstarkman.space")
+
+
+@lru_cache(maxsize=1)
+def cards() -> tuple[dict, ...]:
+    """The software cards the website draws as images, in the order it shows them
+    and with the row, width and height it lays each out at (/cards/index.json):
+    the lead alone, the others two to a row, a row's cards one height."""
+    return tuple(json.loads(_fetch(f"{SITE}/cards/index.json"))["cards"])
+
+
 @lru_cache(maxsize=1)
 def items() -> tuple[dict, ...]:
     """Every item in data/, newest first."""
